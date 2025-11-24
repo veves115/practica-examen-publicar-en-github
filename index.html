@@ -5,26 +5,98 @@
     <meta name="viewport" content="width=device-width" />
     <title>Mi experimento CSS + Git</title>
     <style>
+      body {
+        margin: 0;
+        padding: 20px;
+        min-height: 100vh;
+        background-color: violet;
+      }
+      
       h1 {
         color: white;
         background-color: green;
         border: 1px solid black;
+        padding: 10px;
       }
-
+      
       p {
         color: aliceblue;
         background-color: rgb(150, 44, 248);
         border: 3px black solid;
-        font-size: medium;
+        font-size: 64px;
+        padding: 10px;
+      }
+      
+      footer {
+        margin-top: 30px;
+        padding: 20px;
+        background-color: #333;
+        color: white;
+        text-align: center;
+      }
+      
+      h2 {
+        color: #333;
+      }
+      
+      /* Estilos para la mascota */
+      #mascota {
+        position: fixed;
+        font-size: 40px;
+        pointer-events: none;
+        transition: transform 0.1s ease-out;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
       }
     </style>
   </head>
   <body>
     <h1>HOLA Git XD !</h1>
     <p>Este es mi primer ej. con CSS y Git</p>
-
     <h2>Subtítulo</h2>
     <p>Segundo elemento de parrafo</p>
-	<h1>¡HALA MADRID!</h1>
+    <h1>¡HALA MADRID!</h1>
+    
+    <footer>
+      <p style="font-size: 16px;">Footer modificado en mi fork</p>
+    </footer>
+    
+    <!-- La mascota que sigue el ratón -->
+    <div id="mascota">🐶</div>
+    
+    <script>
+      const mascota = document.getElementById('mascota');
+      let mouseX = 0;
+      let mouseY = 0;
+      let mascotaX = 0;
+      let mascotaY = 0;
+      
+      // Capturar movimiento del ratón
+      document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+      
+      // Animar la mascota para que siga el ratón suavemente
+      function animarMascota() {
+        // Calcular la diferencia entre la posición del ratón y la mascota
+        const diffX = mouseX - mascotaX;
+        const diffY = mouseY - mascotaY;
+        
+        // Mover la mascota un poco hacia el ratón (efecto de seguimiento suave)
+        mascotaX += diffX * 0.1;
+        mascotaY += diffY * 0.1;
+        
+        // Aplicar la posición
+        mascota.style.left = mascotaX + 'px';
+        mascota.style.top = mascotaY + 'px';
+        
+        // Continuar la animación
+        requestAnimationFrame(animarMascota);
+      }
+      
+      // Iniciar la animación
+      animarMascota();
+    </script>
   </body>
 </html>
